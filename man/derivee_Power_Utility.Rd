@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions.R
 \name{derivee_Power_Utility}
 \alias{derivee_Power_Utility}
-\title{Derivative of the Concavified Power Utility function}
+\title{Derivative of Power Utility function}
 \usage{
 derivee_Power_Utility(x, gamma)
 }
@@ -15,7 +15,7 @@ derivee_Power_Utility(x, gamma)
 Derivative of Power Utility evaluated at x.
 }
 \description{
-Derivative of the Concavified Power Utility function
+Derivative of Power Utility function
 }
 \examples{
 derivee_Power_Utility(1.5,4)

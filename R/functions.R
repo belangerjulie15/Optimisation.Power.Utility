@@ -358,7 +358,7 @@ CRRA<-function(x,gamma){
 
 
 #16) Dérivée de la fonction Power Utility
-#' Derivative of the Concavified Power Utility function
+#' Derivative of Power Utility function
 #'
 #' @param x Risky asset value
 #' @param gamma Paramater Gamma in the Power Utility function. Must be different than 1.
