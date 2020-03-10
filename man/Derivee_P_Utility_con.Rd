@@ -18,7 +18,7 @@ Derivee_P_Utility_con(X_T_con, gamma_c, b_c, a_c, K_c)
 \item{K_c}{The constant that is added to the payoff (equal to b_o most of the time)}
 }
 \value{
-The derivative of th funcation Power Utility from which a concavification has been made
+The derivative of the function Power Utility from which concavification has been made
 }
 \description{
 Derivative of the Concavified Power Utility function

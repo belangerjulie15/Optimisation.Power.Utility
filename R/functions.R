@@ -204,7 +204,7 @@ P_Utility_con<-function(X_T_con,gamma_c,b_c,a_c,K_c){
 #' @param K_c The constant that is added to the payoff (equal to b_o most of the time)
 #'
 #'
-#' @return The derivative of th funcation Power Utility from which a concavification has been made
+#' @return The derivative of the function Power Utility from which concavification has been made
 #' @export
 #'
 #' @examples Derivee_P_Utility_con(X_T_con=1.4,gamma_c=2,b_c=1,a_c=1,K_c=1)
@@ -340,7 +340,7 @@ Droite<-function(pente, origine,val_x){
   return(origine+val_x*pente)
 }
 
-
+#15) Fonction CRRA
 #' CRRA (Constant Relative Risk Aversion)
 #'
 #' @param x Risky asset value
@@ -353,6 +353,23 @@ Droite<-function(pente, origine,val_x){
 CRRA<-function(x,gamma){
   result<-(x^(1-gamma)-1)/(1-gamma)
   return(result)
+}
+
+
+
+#16) Dérivée de la fonction Power Utility
+#' Derivative of the Concavified Power Utility function
+#'
+#' @param x Risky asset value
+#' @param gamma Paramater Gamma in the Power Utility function. Must be different than 1.
+#'
+#' @return Derivative of Power Utility evaluated at x.
+#' @export
+#'
+#' @examples derivee_Power_Utility(1.5,4)
+derivee_Power_Utility<-function(x,gamma){
+  inv<-x^(-gamma)
+  return(inv)
 }
 ################################################################
 
