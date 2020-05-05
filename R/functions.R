@@ -63,7 +63,7 @@ P_Utility<-function(X_Tu,gamma){
 #' @examples Find_x_theta_PU(1,1,1,2)
 Find_x_theta_PU<-function(b_o,a_o,K_o,gamma_o){
   f <- function(x) payoff_call(X_T=x,b=b_o,a=a_o,K=K_o)^(-gamma_o)*x*a_o-P_Utility(payoff_call(x,b=b_o,a=a_o,K=K_o),gamma_o)+P_Utility(K_o,gamma_o)        #-Finding the fee
-  result<-uniroot(f, c(b_o,b_o+100),tol=0.00001)$root
+  result<-uniroot(f, c(b_o,b_o+100),tol= 0.000001)$root
   return(result)
 }
 
@@ -122,7 +122,7 @@ lambda_optimal<-function(r_FLo,alpha_FLo,sigma_FLo,gamma_FLo,K_FLo,b_FLo,a_FLo,X
 
   f <- function(x) Find_lambda(r_FL=r_FLo,alpha_FL=alpha_FLo,sigma_FL=sigma_FLo,gamma_FL=gamma_FLo,K_FL=K_FLo,b_FL=b_FLo,a_FL=a_FLo,T_FL=T_FLo,lambda_FL = x)-X_0_FLo
 
-  lambda_result<-uniroot(f, c(0.0000000000000001,100),tol = 0.00001)$root
+  lambda_result<-uniroot(f, c(0.0000000000000001,100),tol = 0.000001)$root
   return(lambda_result)
 }
 
@@ -314,7 +314,7 @@ PowerUtility_con_3<-function(gamma1,gamma2,gamma3,b,a,K,x){
 Find_x_theta_PU_Numerous<-function(b_o,a_o,K_o,vector_gamma){
 
   f <- function(x) sum(P_Utility(payoff_call(x,b_o,a_o,K_o),vector_gamma))-sum(P_Utility(K_o,vector_gamma))-x*sum((x)^(-vector_gamma))
-  sln_x<-uniroot(f, c(b_o,b_o+100),tol=0.00001)$root
+  sln_x<-uniroot(f, c(b_o,b_o+100),tol= 0.000001)$root
 
   return(sln_x)
 }
