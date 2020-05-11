@@ -371,6 +371,64 @@ derivee_Power_Utility<-function(x,gamma){
   inv<-x^(-gamma)
   return(inv)
 }
-################################################################
 
+#17) Frais équitable proportion constante (variable)
+
+#' Frais équitable proportion constante: sans simulation
+#'
+#' @param r_s_r Taux de l'actif sans risque
+#' @param si Volatilité de l'actif risqué
+#' @param m_T Maturité du fonds distinct
+#' @param bud Valeur initiale investie dans le fonds distinct
+#' @param garantie Valeur de la garantie du fonds distinct
+#' @param propo Proportion constante investie dans l'actif risqué
+#'
+#' @return cf: Frais équitable appliqué au fonds distinct
+#' @export
+#'
+#' @examples frais_eq_prop_cte_theo(r_s_r=0.02,si=0.2,m_T=10,bud=1,garantie=1,propo=1)
+frais_eq_prop_cte_theo<-function(r_s_r,si,m_T,bud,garantie,propo){
+
+  iterat<-function(cf){
+
+    r_til<-r_s_r-cf
+    k<-(garantie-(1-propo)*exp(r_til*m_T))/propo
+
+    d1<-((r_til+0.5*si^2)*m_T-log(k))/(si*sqrt(m_T))
+    d2<- (log(k)-(r_til-0.5*si^2)*m_T)/(si*sqrt(m_T))
+    budget_tempo<-exp(-cf*m_T)*(propo*pnorm(d1)+(1-propo))+(exp(-r_s_r*m_T)*garantie-(1-propo)*exp(-cf*m_T))*pnorm(d2)-bud
+    return(budget_tempo)}
+
+  cf_equita<-uniroot(iterat, c(0.000001,0.10),tol= 0.000001)$root
+
+  return(cf_equita)
+}
+
+#18) Budget initial pour porportion constante investie dans l'actif risqué
+
+#' Budget initial pour porportion constante investie dans l'actif risqué
+#'
+#' @param r_s_r Taux de l'actif sans risque
+#' @param cf Frais appliqué sur le fonds distinct
+#' @param si Volatilité de l'actif risqué
+#' @param m_T Maturité du fonds distinct
+#' @param garantie Valeur de la garantie du fonds distinct
+#' @param propo Proportion constante investie dans l'actif risqué
+#'
+#' @return Valeur équitable a investir dans le fonds
+#' @export
+#'
+#' @examples budget_eq_prop_cte_theo(r_s_r=0.02,cf=0.01224,si=0.2,m_T=10,bud=1,garantie=1,propo=1)
+budget_eq_prop_cte_theo<-function(r_s_r,cf,si,m_T,garantie,propo){
+
+    r_til<-r_s_r-cf
+    k<-(garantie-(1-propo)*exp(r_til*m_T))/propo
+
+    d1<-((r_til+0.5*si^2)*m_T-log(k))/(si*sqrt(m_T))
+    d2<- (log(k)-(r_til-0.5*si^2)*m_T)/(si*sqrt(m_T))
+    budget_tempo<-exp(-cf*m_T)*(propo*pnorm(d1)+(1-propo))+(exp(-r_s_r*m_T)*garantie-(1-propo)*exp(-cf*m_T))*pnorm(d2)
+  return(budget_tempo)
+}
+
+################################################################
 
