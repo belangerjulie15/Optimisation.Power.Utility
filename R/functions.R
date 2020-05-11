@@ -399,7 +399,7 @@ frais_eq_prop_cte_theo<-function(r_s_r,si,m_T,bud,garantie,propo){
     budget_tempo<-exp(-cf*m_T)*(propo*pnorm(d1)+(1-propo))+(exp(-r_s_r*m_T)*garantie-(1-propo)*exp(-cf*m_T))*pnorm(d2)-bud
     return(budget_tempo)}
 
-  cf_equita<-uniroot(iterat, c(0.000001,0.10),tol= 0.000001)$root
+  cf_equita<-uniroot(iterat, c(-0.01,0.10),tol= 0.000001)$root
 
   return(cf_equita)
 }
